@@ -15,7 +15,7 @@ function showCollection( collection ){ // displays the number of records in the 
     }
 } // end showCollection
 
-function findByArtist( artist ){ // searches through to collection for a matchin album, by the artist's name
+function findByArtist( artist ){ // searches through to collection for a matching album, by the artist's name
     let artistMatch = [];
     for( let i = 0; i < collection.length; i++ ){
         if( collection[i].artist === artist ){
@@ -24,6 +24,29 @@ function findByArtist( artist ){ // searches through to collection for a matchin
     }
     return artistMatch; 
 } // end findByArtist
+
+/* Was unable to get the search function to work properly. Two albums from the collection would be 
+returned if they both had the same artist, but different years. The yearPublished didn't behave in 
+this manor, and would only return the full exact match, like intended.
+
+function search( searchedItem ){ // search through the collection
+    let result =[];
+    if( !searchedItem || ( searchedItem.artist === undefined && searchedItem.yearPublished === undefined ) ){
+        return collection;
+    }
+    for( let i = 0; i < collection.length; i++ ){
+        const album = collection[i];
+        if( searchedItem.artist && album.artist !== searchedItem.artist ){
+            continue;
+        }
+        if( searchedItem.yearPublished && album.yearPublished !== searchedItem.yearPublished ){
+            continue;    
+        }
+        result.push(album);
+    }
+    return result;
+} // end search
+*/
 
 addToCollection( "2001", "Dr. Dre", 1999 );
 addToCollection( "The Carter III", "Lil Wayne", 2008 );
@@ -42,3 +65,8 @@ console.log( 'These are the albums associated with your indicated artist within 
 console.log( 'These are the albums associated with your indicated artist within the collection:', findByArtist( "Led Zepplin" ) );
 console.log( 'These are the albums associated with your indicated artist within the collection:', findByArtist( "ACDC" ) );
 console.log(""); // to help with readability in the console
+
+/*
+console.log( search( { artist: 'Lil Wayne', year: 2008 } ));
+console.log( search( { artist: 'Ray Charles', year: 1957 } ));
+console.log( search( { artist: 'Red Hot Chili Peppers', year: 1999 } )); */
